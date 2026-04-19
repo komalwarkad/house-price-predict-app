@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>House Price Predictor</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        width: 350px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        text-align: center;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    input {
+        width: 90%;
+        padding: 10px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        outline: none;
+        transition: 0.3s;
+    }
+
+    input:focus {
+        border-color: #4facfe;
+        box-shadow: 0 0 5px rgba(79,172,254,0.5);
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        border: none;
+        color: white;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .result {
+        margin-top: 15px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(20px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <h2>🏠 House Price Predictor</h2>
+
+    <form action="/predict" method="post" onsubmit="showLoading()">
+        <input type="text" name="area" placeholder="Area (sq ft)" required>
+        <input type="text" name="bedrooms" placeholder="Bedrooms" required>
+        <input type="text" name="bathrooms" placeholder="Bathrooms" required>
+        <input type="text" name="garage" placeholder="Garage Cars" required>
+        <input type="text" name="age" placeholder="House Age" required>
+
+        <button type="submit">Predict Price</button>
+    </form>
+
+    <div class="result" id="result">
+        {{ prediction_text }}
+    </div>
+</div>
+
+<script>
+function showLoading() {
+    document.getElementById("result").innerHTML = "⏳ Predicting...";
+}
+</script>
+
+</body>
+</html>
