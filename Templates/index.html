@@ -82,18 +82,24 @@
 <div class="container">
     <h2>🏠 House Price Predictor</h2>
 
-    <form action="/predict" method="post" onsubmit="showLoading()">
-        <input type="text" name="area" placeholder="Area (sq ft)" required>
-        <input type="text" name="bedrooms" placeholder="Bedrooms" required>
-        <input type="text" name="bathrooms" placeholder="Bathrooms" required>
-        <input type="text" name="garage" placeholder="Garage Cars" required>
-        <input type="text" name="age" placeholder="House Age" required>
+    <!-- ✅ FIXED FORM ACTION -->
+    <form action="{{ url_for('predict') }}" method="post" onsubmit="showLoading()">
+
+        <!-- ✅ Added type="number" for validation -->
+        <input type="number" name="area" placeholder="Area (sq ft)" required>
+        <input type="number" name="bedrooms" placeholder="Bedrooms" required>
+        <input type="number" name="bathrooms" placeholder="Bathrooms" required>
+        <input type="number" name="garage" placeholder="Garage Cars" required>
+        <input type="number" name="age" placeholder="House Age" required>
 
         <button type="submit">Predict Price</button>
     </form>
 
+    <!-- ✅ Safe rendering -->
     <div class="result" id="result">
-        {{ prediction_text }}
+        {% if prediction_text %}
+            {{ prediction_text }}
+        {% endif %}
     </div>
 </div>
 
