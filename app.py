@@ -3,7 +3,8 @@ import pickle
 import numpy as np
 import os
 
-app = Flask(__name__)
+# 👇 Specify custom templates folder (Capital T)
+app = Flask(__name__, template_folder='Templates')
 
 # Load model safely
 model = pickle.load(open('model.pkl', 'rb'))
